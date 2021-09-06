@@ -1,7 +1,7 @@
 function jquery() {
     const URLGET = "http://hp-api.herokuapp.com/api/characters";
 
-    $(".contenedor__botones").append('<button id="btn1"><a>Harry Potter</a></button>');
+    $(".contenedor__botones").append('<button id="btn1">Harry Potter</button>');
 
     $("#btn1").click(() => {
         $.get(URLGET, function(respuesta, estado) {
@@ -17,9 +17,15 @@ function jquery() {
             }
         });
     });
+    $(document).ready(function() {
+        $("#btn1").click(function(event) {
+            $(".contenedor__botones2").empty();
+        });
+    });
+    $(".contenedor__botones2").fadeIn(8000);
+    $(".contenedor__botones2").fadeOut(8000);
 }
 jquery();
-
 
 let miFormulario = document.getElementById("myForm");
 
@@ -238,11 +244,9 @@ function crearUsuario(e) {
         <p class="activo__valor">Valor: $${inversiones.valor}</p>
         <h5 class="opciones">\nUsted podría comprar con su ahorro mensual ${division(ahorroIngresado, inversiones.valor).toFixed(2)} ${inversiones.denominacion}.</h5></div>`);
     }
-
-
     $(".operacionOpcion2").css("display", "block");
     document.getElementById("formIdBis").style.display = "none";
-    $("#mostrarCuantoTardo").css("display", "block");
+    // $("#mostrarCuantoTardo").css("display", "block");
     $(".sidebar").css("display", "block");
     $("#mostarTipoInversor").css("display", "inline-block");
     $("#myForm")[0].reset();
@@ -400,10 +404,9 @@ function definirInversor(f) {
 
     //funcion efectos
     function removeElementWithAnimation() {
-        $("#formId").slideUp("fast");
-
-        $(".sidebar").slideDown("slow");
-        $(".resultadoTipoInversor").slideDown("slow");
+        $("#formId").hide("fast");
+        $(".sidebar").fadeIn("fast");
+        $(".resultadoTipoInversor").fadeIn(3000).fadeOut(6000);
     }
     removeElementWithAnimation();
 
@@ -439,11 +442,15 @@ function cerrarFormularioDolar() {
     document.getElementById("formIdDolar").style.display = "none";
 }
 
-
-let miFormulario3 = document.getElementById("myFormDolar")
+//funcion Dolar Vs. Dolar
+let miFormulario3 = document.getElementById("myFormDolar");
 
 let buttonSubmitDolar = document.getElementById('submitButtonDolar');
 miFormulario3.addEventListener("submit", DolarVsDolar);
+
+// $("#cerrarFormularioDolar").click(function() {
+//     $("formIdDolar").slideUp(1000, "fast");
+// });
 
 function DolarVsDolar(g) {
     g.preventDefault();
@@ -473,32 +480,3 @@ function DolarVsDolar(g) {
     // $("#myFormDolar")[0].reset();
 }
 DolarVsDolar();
-
-/// Scroll up ///
-
-// document.getElementById("button-up").addEventListener("click", scrollUp);
-
-// function scrollUp() {
-
-//     var currentScroll = document.documentElement.scrollTop;
-
-//     if (currentScroll > 0) {
-//         window.requestAnimationFrame(scrollUp);
-//         window.scrollTo(0, currentScroll - (currentScroll / 10));
-//         buttonUp.style.transform = "scale(0)";
-//     }
-// }
-
-// buttonUp = document.getElementById("button-up");
-
-// window.onscroll = function() {
-
-//     var scroll = document.documentElement.scrollTop;
-
-//     if (scroll > 100) {
-//         buttonUp.style.transform = "scale(1)";
-//     } else if (scroll < 100) {
-//         buttonUp.style.transform = "scale(0)";
-//     }
-
-// }

@@ -598,6 +598,9 @@ $color-celeste: #548aff;
         display: inline-block;
         margin-top: 20px;
     }
+    .contenedor__botones2 {
+        display: none;
+    }
     .contenedor {
         font-size: 28px;
         border-radius: 5px;
@@ -632,13 +635,14 @@ $color-celeste: #548aff;
         margin-left: 6px;
         margin-right: 6px;
         line-height: 35px;
-        color: #0d6efd;
+        color: $color-celeste;
         &:hover {
             background-color: rgb(116, 177, 26);
             color: #053191;
         }
         a {
             text-decoration: none;
+            color: $color-celeste;
         }
     }
     .contenedor__botones {
