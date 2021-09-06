@@ -22,10 +22,76 @@ function jquery() {
             $(".contenedor__botones2").empty();
         });
     });
-    $(".contenedor__botones2").fadeIn(8000);
-    $(".contenedor__botones2").fadeOut(8000);
+    //$(".contenedor__botones2").fadeIn(8000);
+    //$(".contenedor__botones2").fadeOut(8000);
 }
 jquery();
+/*
+function Clientes() {
+    const URLGET = "http://hp-api.herokuapp.com/api/characters/house/gryffindor";
+
+    $.get(URLGET, function(respuesta, estado) {
+        if (estado === "success") {
+            let misDatos = respuesta;
+            for (const personajes of misDatos) {
+            $("nuestrosClientes").prepend(`<div class= "clientesCard">
+            <h2 class="personaje__${personajes.name}">${personajes.name}</h2>
+            <img class="personaje__foto" src="${personajes.image}" alt="foto de ${personajes.image}" width= "100px" height= "100px">
+            <p class="personaje__house">House: ${personajes.house}</p>
+            </div>`);
+            }
+        }
+    });
+}
+Clientes();
+*/
+const URL_DOLAR = "https://criptoya.com/api/dolar"
+const URL_CLIENTES = "../json/usuarios.json"
+
+$(".contenedor__botones").prepend('<button id="botonDolar" class="btn btn-success m-2">Cargar cotizacion Dolar</button>');
+$(".contenedor__botones").prepend('<button id="botonClientes" class="btn btn-success m-2">Cargar clientes</button>');
+
+$("#botonDolar").click(() => {
+    $.get(URL_DOLAR, function (res, state) {
+        if (state === "success") {
+            console.log(res);
+            for (const dolar in res) {
+                $(".contenedor__botones2").prepend(`<div class="nivelRiesgo1">
+                                    <div class="h3">Dolar solidario $${dolar.solidario}</div>
+                                    <div class="h3">Dolar blue $${dolar.blue}</div>
+                                    <div class="h3">Dolar bolsa $${dolar.mep}</div>    
+                                    </div>`);
+            }
+        }
+    });
+});
+
+$("#botonClientes").click(() => {
+    $.get(URL_CLIENTES, function (res, state) {
+        if (state == "success") {
+            for (const dato in res) {
+                $(".row").append(`
+                                <div class="card col-sm-3 m-1">
+                                    <div class="h3">${res[dato].id}</div>
+                                    <div>Nombre: ${res[dato].name}</div>
+                                    <div>Email: ${res[dato].email}</div>
+                                    <div>Telefono: ${res[dato].phone}</div>
+                                    <div>Codigo Postal: ${res[dato].address.zipcode}</div>
+                                </div>`);
+            }
+            console.log(res); 
+            res.forEach(dato => {
+                $(".contenedor__botones2").append(`
+                                <div class="card col-sm-3 m-1">
+                                    <div>Nombre: ${dato.name}</div>
+                                    <div>Telefono: ${dato.house}</div>
+                                    <div>Email: ${dato.image}</div>
+                                    <div>${dato.opinion}</div>
+                                </div>`);
+            })
+        }
+    });
+});
 
 let miFormulario = document.getElementById("myForm");
 
@@ -406,7 +472,7 @@ function definirInversor(f) {
     function removeElementWithAnimation() {
         $("#formId").hide("fast");
         $(".sidebar").fadeIn("fast");
-        $(".resultadoTipoInversor").fadeIn(3000).fadeOut(6000);
+        $(".resultadoTipoInversor").fadeIn(3000).fadeOut(6000).fadeIn(1000);
     }
     removeElementWithAnimation();
 
