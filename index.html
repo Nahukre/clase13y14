@@ -76,6 +76,7 @@
                 <span class="visually-hidden">Next</span>
             </button>
     </div>
+
     <div class="contenedor__botones">
         <div class="contenedor__botones2"></div>
         <section class="contenedor">
@@ -88,13 +89,28 @@
             <a class="contenedor__link" id="dolarVsDolarBtn" href="javascript:abrirFormularioDolar()">Dolar vs. Dolar</a>
         </section>
     </div>
+    <div class="contenedor__tabla">
+        <table class="table table-dark table-striped" id="tabla__dolar">
+            <thead>
+                <tr>
+                    <th scope="col" id="oficial">Dolar</th>
+                    <th scope="col" id="solidario">Cotización</th>
+            </thead>
+            <tbody class="tablaDolar">
+            </tbody>
+        </table>
+    </div>
+    <div class="contenedor__clientes">
+        <section class="nuestrosClientes"></section>
+    </div>
     <section id="pagina1">
         <div class="sidebar">
             <div id="cuantoTardo"></div>
             <div id="tipoInversor"></div>
             <div class="resultadoTipoInversor">
                 <h6 class="operacionOpcion3">Debería invertir en los siguientes activos</h6>
-                <div class="resultadoTipoInversor2"></div>
+                <div class="resultadoTipoInversor2">
+                </div>
                 <div class="resultadoDolarVsDolar"></div>
             </div>
         </div>
@@ -225,6 +241,7 @@
     <script>
         new WOW().init();
     </script>
+    <script src="json/usuarios.json"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js/boton-arriba.js"></script>
     <script src="js/miarchivo.js"></script>

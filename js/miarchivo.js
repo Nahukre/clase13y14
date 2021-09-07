@@ -1,7 +1,7 @@
 function jquery() {
     const URLGET = "http://hp-api.herokuapp.com/api/characters";
 
-    $(".contenedor__botones").append('<button id="btn1">Harry Potter</button>');
+    $(".contenedor__botones").append('<button id="btn1"><a>Harry Potter</a></button>');
 
     $("#btn1").click(() => {
         $.get(URLGET, function(respuesta, estado) {
@@ -22,10 +22,46 @@ function jquery() {
             $(".contenedor__botones2").empty();
         });
     });
-    $(".contenedor__botones2").fadeIn(8000);
-    $(".contenedor__botones2").fadeOut(8000);
 }
 jquery();
+/*
+function Clientes() {
+    const URLGET = "http://hp-api.herokuapp.com/api/characters/house/gryffindor";
+
+    $.get(URLGET, function(respuesta, estado) {
+        if (estado === "success") {
+            let misDatos = respuesta;
+            for (const personajes of misDatos) {
+            $("nuestrosClientes").prepend(`<div class= "clientesCard">
+            <h2 class="personaje__${personajes.name}">${personajes.name}</h2>
+            <img class="personaje__foto" src="${personajes.image}" alt="foto de ${personajes.image}" width= "100px" height= "100px">
+            <p class="personaje__house">House: ${personajes.house}</p>
+            </div>`);
+            }
+        }
+    });
+}
+Clientes();
+*/
+const URL_DOLAR = "https://criptoya.com/api/dolar"
+
+
+$(() => {
+    $.get(URL_DOLAR, function(res, state) {
+        if (state === "success") {
+            for (const dolar in res) {
+                $(".tablaDolar").append(`
+                <tr scope="row" id="${dolar}">
+                <th>${dolar}</th>
+                <td>$${res[dolar]}</td>
+                </tr>`);
+            }
+        }
+        $("#time").css("display", "none");
+        $("#ccb").css("display", "none");
+    });
+});
+
 
 let miFormulario = document.getElementById("myForm");
 
@@ -276,7 +312,7 @@ class activoDeInversion {
 }
 
 let nacional = new activoDeInversion("Activos dentro del mercado local con los cuales poder ahorrar");
-let dolarBlue = new Inversion("Dolar blue", 1, 170, "El Dólar Blue es el dólar que se consigue en el mercado negro o paralelo. Su cotización o valor generalmente es superior a la cotización del oficial y suele aumentar a medida que aumenta el control de cambios o se incrementan las restricciones para la compra de dólares al precio oficial.", "../img/dolar.jpg");
+let dolarBlue = new Inversion("Dolar blue", 1, 180, "El Dólar Blue es el dólar que se consigue en el mercado negro o paralelo. Su cotización o valor generalmente es superior a la cotización del oficial y suele aumentar a medida que aumenta el control de cambios o se incrementan las restricciones para la compra de dólares al precio oficial.", "../img/dolar.jpg");
 let bitcoin = new Inversion("Bitcoin", 3, 8300000, "Bitcoin es una criptomoneda descentralizada, es decir que no existe una autoridad de control que sea responsable de su emisión y registro de sus movimientos.", "../img/bitcoin.jpg");
 let cedearTesla = new Inversion("Tesla cedear", 3, 7500, "Cedears  (Certificados de Depósito Argentinos) de la compañia Tesla. Activo financiero atado al dolar y a la valuación de la empresa en el mercado. Este activo es considerado de riesgo.", "../img/tesla.png");
 let cedearApple = new Inversion("Apple cedear", 2, 3500, "Cedears  (Certificados de Depósito Argentinos) de la compañia Apple. Activo financiero atado al dolar y a la valuación de la empresa en el mercado.", "../img/apple.jpg");
@@ -349,13 +385,12 @@ function definirInversor(f) {
                 `<h5 class="operacionOpcion">Usted es un inversor conservador</h>`;
             tipoInversor.appendChild(contenedorTipoInversorConservador);
             for (const inversiones of nacional.activo) {
-                $(".resultadoTipoInversor2").append(`<div class= "nivelRiesgo${inversiones.nivelRiesgo}">
+                $(".resultadoTipoInversor2").prepend(`<div class= "nivelRiesgo${inversiones.nivelRiesgo}">
                     <h2 class="dolarBlue__nombre">${inversiones.denominacion}</h2>
                     <img class="activo__foto2" src="${inversiones.foto}" alt="foto de ${inversiones.denominacion}" width= "100px" height= "100px">
                     <p class="activo__valor2">Valor: $${inversiones.valor}</p>
                     </div>`);
             }
-
             $(".nivelRiesgo2").css("display", "none");
             $(".nivelRiesgo3").css("display", "none");
             break;
@@ -369,13 +404,12 @@ function definirInversor(f) {
                 `<h5 class="operacionOpcion">Usted es un inversor Moderado</h>`;
             tipoInversor.appendChild(contenedorTipoInversorModerado);
             for (const inversiones of nacional.activo) {
-                $(".resultadoTipoInversor2").append(`<div class= "nivelRiesgo${inversiones.nivelRiesgo}">
+                $(".resultadoTipoInversor2").prepend(`<div class= "nivelRiesgo${inversiones.nivelRiesgo}">
                 <h2 class="dolarBlue__nombre">${inversiones.denominacion}</h2>
                 <img class="activo__foto" src="${inversiones.foto}" alt="foto de ${inversiones.denominacion}" width= "100px" height= "100px">
                 <p class="activo__valor2">Valor: $${inversiones.valor}</p>
                 </div>`);
             }
-
             $(".nivelRiesgo1").css("display", "none");
             $(".nivelRiesgo3").css("display", "none");
             break;
@@ -389,13 +423,12 @@ function definirInversor(f) {
                 `<h5 class="operacionOpcion">Usted es un inversor agresivo</h>`;
             tipoInversor.appendChild(contenedorTipoInversorAgresivo);
             for (const inversiones of nacional.activo) {
-                $(".resultadoTipoInversor2").append(`<div class= "nivelRiesgo${inversiones.nivelRiesgo}">
+                $(".resultadoTipoInversor2").prepend(`<div class= "nivelRiesgo${inversiones.nivelRiesgo}">
                 <h2 class="dolarBlue__nombre">${inversiones.denominacion}</h2>
                 <img class="activo__foto2" src="${inversiones.foto}" alt="foto de ${inversiones.denominacion}" width= "100px" height= "100px">
                 <p class="activo__valor2">Valor: $${inversiones.valor}</p>
                 </div>`);
             }
-
             $(".nivelRiesgo1").css("display", "none");
             $(".nivelRiesgo2").css("display", "none");
             break;
@@ -406,7 +439,8 @@ function definirInversor(f) {
     function removeElementWithAnimation() {
         $("#formId").hide("fast");
         $(".sidebar").fadeIn("fast");
-        $(".resultadoTipoInversor").fadeIn(3000).fadeOut(6000);
+        $(".resultadoTipoInversor").fadeIn(3000).fadeOut(6000).fadeIn(1000);
+        $(".operacionOpcion").delay(10000).fadeOut("slow");
     }
     removeElementWithAnimation();
 

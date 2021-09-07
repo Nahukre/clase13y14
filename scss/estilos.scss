@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 
-// #03a00b;
 $color-verde: greenyellow;
 $color-celeste: #548aff;
 @media only screen and (min-width: 1024px) {
@@ -411,6 +410,19 @@ $color-celeste: #548aff;
         width: 220px;
         display: inline-block;
         color: $color-celeste;
+    }
+    .contenedor__tabla {
+        border-bottom: solid;
+        border-color: black;
+        #tabla__dolar {
+            width: 50%;
+            margin: auto;
+            text-transform: capitalize;
+            border-right: solid;
+            border-left: solid;
+            border-color: black;
+            border-width: 1px;
+        }
     }
     #activo__dolarBlue {
         background-color: rgba(255, 255, 255, 0.6);

@@ -422,6 +422,19 @@
     display: inline-block;
     color: #548aff;
   }
+  .contenedor__tabla {
+    border-bottom: solid;
+    border-color: black;
+  }
+  .contenedor__tabla #tabla__dolar {
+    width: 50%;
+    margin: auto;
+    text-transform: capitalize;
+    border-right: solid;
+    border-left: solid;
+    border-color: black;
+    border-width: 1px;
+  }
   #activo__dolarBlue {
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 5px;
